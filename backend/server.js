@@ -4,7 +4,7 @@ import cors from "cors"
 import "dotenv/config";
 import { connectDB } from "./config/db.js";
 import * as Sentry from "@sentry/node";
-import { webhook } from "./controller/webHook.js";
+import { clerkWebhooks } from "./controller/webHook.js";
 import companyRoutes from './Routes/companyRoutes.js'
 import connectCloudinary from "./config/cloudinary.js";
 import jobRoutes from './Routes/jobRoutes.js'
@@ -35,7 +35,7 @@ app.get("/debug-sentry", function mainHandler(req, res) {
     throw new Error("My first Sentry error!");
   });
 
-app.post(" /webhooks",webhook);
+app.post(" /webhooks",clerkWebhooks);
 app.use('/api/company', companyRoutes)
 app.use('/api/jobs', jobRoutes)
 app.use('/api/user', userRoutes)

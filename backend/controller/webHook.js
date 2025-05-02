@@ -3,7 +3,7 @@ import {Webhook} from "svix";
 
 
 // API Controller Function to Manage clerk User with database
-const webhook = async (req,res) => {
+const clerkWebhooks = async (req,res) => {
     try {
         
         const webhook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
@@ -30,7 +30,7 @@ const webhook = async (req,res) => {
                     email:data.email_address[0].email_address,
                     name:data.first_name + " " + data.last_name,
                     image:data.image_url,
-                    resume:""
+                    resume:''
                 }
                 //saving the user data in our database
                 await UserModel.create(userData);
@@ -63,4 +63,4 @@ const webhook = async (req,res) => {
     }
 }
 
-export {webhook}
+export {clerkWebhooks}
